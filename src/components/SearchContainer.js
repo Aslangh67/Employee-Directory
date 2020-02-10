@@ -31,7 +31,7 @@ class SearchContainer extends Component {
     this.setState({
       [name]: value
     });
-    // const res2=[this.state.result.filter(item => item.name.first === this.state.search)]
+    // let res2=[...this.state.result].filter(item =>{return item.name.first.toLowerCase().indexOf( this.state.search)>-1})
     // this.setState({
     //   result:res2
     // })
@@ -64,7 +64,7 @@ class SearchContainer extends Component {
               heading={"Employees:"}
             >
               
-              {[...this.state.result].map((res, index)=><div > <EmpDetail name={res.name.first +" "+ res.name.last} src={res.picture.thumbnail} director={res.email} age={res.dob.age} phone={res.phone}/> <hr/></div>)}
+              {[...this.state.result].filter(item =>{return item.name.first.toLowerCase().indexOf( this.state.search)>-1}).map((res, index)=><div > <EmpDetail key={index} name={res.name.first +" "+ res.name.last} src={res.picture.thumbnail} director={res.email} age={res.dob.age} phone={res.phone}/> <hr/></div>)}
             
             </Card>
           </Col>
